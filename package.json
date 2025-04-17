@@ -6,13 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "prisma generate"
-
+    "lint": "next lint"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
-    "@prisma/client": "^6.6.0",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-aspect-ratio": "^1.1.1",
@@ -54,7 +51,6 @@
     "next-themes": "^0.4.4",
     "openai": "^4.95.0",
     "pg": "^8.14.1",
-    "prisma": "^6.6.0",
     "react": "^19",
     "react-day-picker": "8.10.1",
     "react-dom": "^19",

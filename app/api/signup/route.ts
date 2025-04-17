@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { prisma } from "@/lib/prisma"
+// import { prisma } from "@/lib/prisma"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
 
@@ -22,56 +22,56 @@ export async function POST(req: Request) {
 
   try {
     // Check if user exists
-    const existingUser = await prisma.user.findUnique({ where: { email } })
+    // const existingUser = await prisma.user.findUnique({ where: { email } })
 
-    if (existingUser) {
-      return NextResponse.json(
-        { error: "Email already in use" },
-        { status: 400 }
-      )
-    }
+    // if (existingUser) {
+    //   return NextResponse.json(
+    //     { error: "Email already in use" },
+    //     { status: 400 }
+    //   )
+    // }
 
     // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10)
+    // const hashedPassword = await bcrypt.hash(password, 10)
 
     // Create gym first if needed
-    let gymId: string | undefined
-    if (gymDetails) {
-      const gym = await prisma.gym.create({
-        data: {
-          name: gymDetails.name,
-          address: gymDetails.address,
-        },
-      })
-      gymId = gym.id
-    }
+    // let gymId: string | undefined
+    // if (gymDetails) {
+    //   const gym = await prisma.gym.create({
+    //     data: {
+    //       name: gymDetails.name,
+    //       address: gymDetails.address,
+    //     },
+    //   })
+    //   gymId = gym.id
+    // }
 
     // Create user
-    const user = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-        role: userType,
-        gymId,
-      },
-    })
+    // const user = await prisma.user.create({
+    //   data: {
+    //     name,
+    //     email,
+    //     password: hashedPassword,
+    //     role: userType,
+    //     gymId,
+    //   },
+    // })
 
-    // Sign JWT token
-    const token = jwt.sign(
-      { userId: user.id, email: user.email, role: user.role },
-      JWT_SECRET,
-      { expiresIn: "7d" }
-    )
+    // // Sign JWT token
+    // const token = jwt.sign(
+    //   { userId: user.id, email: user.email, role: user.role },
+    //   JWT_SECRET,
+    //   { expiresIn: "7d" }
+    // )
 
     // Return user without password
-    const { password: _, ...userWithoutPassword } = user
+    // const { password: _, ...userWithoutPassword } = user
 
     return NextResponse.json(
       {
         message: "Signup successful",
-        user: userWithoutPassword,
-        token,
+        // user: userWithoutPassword,
+        // token,
       },
       { status: 201 }
     )
